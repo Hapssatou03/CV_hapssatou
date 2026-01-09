@@ -24,3 +24,43 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* --- CV background helpers --- */
+.code-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Ctext x='10' y='40' font-size='18' fill='%237c5cff' font-family='monospace'%3Econst api = await fetch('/api');%3C/text%3E%3Ctext x='10' y='80' font-size='18' fill='%237c5cff' font-family='monospace'%3Efunction render()%7B return %3CApp/%3E %7D%3C/text%3E%3Ctext x='10' y='120' font-size='18' fill='%237c5cff' font-family='monospace'%3ESELECT * FROM users;%3C/text%3E%3C/svg%3E");
+  background-size: 900px 900px;
+  background-repeat: repeat;
+}
+
+.stars {
+  background-image: radial-gradient(#b9a7f2 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+/* =========================
+   CV BACKGROUND (code + étoiles)
+   ========================= */
+
+.code-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Ctext x='10' y='40' font-size='18' fill='%237c5cff' font-family='monospace'%3Econst api = await fetch('/api');%3C/text%3E%3Ctext x='10' y='80' font-size='18' fill='%237c5cff' font-family='monospace'%3Efunction render()%7B return %3CApp/%3E %7D%3C/text%3E%3Ctext x='10' y='120' font-size='18' fill='%237c5cff' font-family='monospace'%3ESELECT * FROM users;%3C/text%3E%3Ctext x='10' y='160' font-size='18' fill='%237c5cff' font-family='monospace'%3Espring.security.jwt.secret=***%3C/text%3E%3C/svg%3E");
+  background-size: 900px 900px;
+  background-repeat: repeat;
+}
+
+.stars {
+  background-image: radial-gradient(#b9a7f2 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+/* =========================
+   CV CARD helper
+   ========================= */
+.cv-card {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 18px 60px rgba(124, 92, 255, 0.14);
+  backdrop-filter: blur(18px);
+}
+
+.font-script {
+  font-family: var(--font-script), cursive;
+}
