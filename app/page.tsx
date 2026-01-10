@@ -1,218 +1,381 @@
 "use client";
 
 import Image from "next/image";
-import html2pdf from "html2pdf.js";
-import React from "react";
 
-export default function Home() {
-  const downloadPDF = () => {
-    const element = document.getElementById("cv");
-    if (!element) return;
+const handleDownloadPdf = () => {
+  window.print();
+};
 
-    html2pdf()
-      .set({
-        margin: 0,
-        filename: "Hapssatou-Sy-CV.pdf",
-        html2canvas: { scale: 2, useCORS: true, backgroundColor: null },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-      })
-      .from(element)
-      .save();
-  };
-
+export default function CVPage() {
   return (
-    <main className="min-h-screen bg-[#f7f3ff] px-4 py-10">
-      {/* Bouton PDF */}
-      <div className="mx-auto mb-6 flex max-w-[900px] items-center justify-end">
-        <button
-          onClick={downloadPDF}
-          className="rounded-full bg-[#7c5cff] px-5 py-2 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(124,92,255,0.35)] transition hover:scale-[1.02]"
-        >
-          Télécharger en PDF ⬇
-        </button>
+    <main className="cv-page">
+    
+      <div className="mx-auto w-full max-w-[980px] px-5 pt-3 sm:px-8 print:hidden">
+        <div className="flex justify-end">
+     <button
+  onClick={() => window.print()}
+  className="print:hidden rounded-full bg-violet-600/90 px-4 py-1.5 text-xs font-semibold text-white shadow hover:bg-violet-700"
+>
+  Télécharger en PDF ⬇️
+</button>
+
+
+        </div>
       </div>
 
-      {/* CV A4 */}
-      <section
-        id="cv"
-        className="relative mx-auto w-[210mm] min-h-[297mm] max-w-full overflow-hidden rounded-[34px] border border-white/40 bg-white/40 p-8 shadow-[0_25px_80px_rgba(124,92,255,0.18)] backdrop-blur-xl"
-      >
-        {/* Background (dégradé + code + étoiles) */}
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#f4efff] via-[#fbf8ff] to-[#f1ecff]" />
-          <div className="code-bg absolute inset-0 opacity-[0.04]" />
-          <div className="stars absolute inset-0 opacity-60" />
-          <div className="absolute inset-0 bg-white/30" />
-        </div>
-
-        {/* Contenu */}
-        <div className="relative z-10">
-          {/* HERO */}
-          <div className="cv-card rounded-[32px] p-7">
-            <div className="flex items-center justify-between gap-6">
+      <div className="cv-overlay">
+        <div className="relative mx-auto w-full max-w-[980px] px-5 py-6 sm:px-8 sm:py-6">
+          {/* HEADER */}
+          <section className="cv-card relative overflow-hidden px-6 py-5 sm:px-7 sm:py-5">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               {/* Left */}
-              <div className="min-w-[320px]">
-                <h1 className="font-script text-5xl font-extrabold tracking-tight text-[#6a45ff]">
-                  Hapssatou Sy
+              <div className="min-w-0">
+              
+                <h1 className="text-[30px] sm:text-[34px] font-extrabold text-violet-700 tracking-tight leading-none">
+                  Hapssatou SY
                 </h1>
 
-                <p className="mt-2 text-lg font-semibold text-[#2d2a3a]">
-                  Développeuse Full-Stack
+                {/* Sous-titre = 12px */}
+                <p className=" mt-2  text-[30px] tracking-tight text-slate-700">
+                  Développeuse Full-Stack & IA
                 </p>
 
-                <div className="mt-6 grid gap-3 text-sm text-[#3e3a52]">
-                  <p className="flex items-center gap-2">
-                    <span className="text-[#7c5cff]">📍</span> France
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="text-[#7c5cff]">✉️</span>{" "}
-                    hapssatousy01@gmail.com
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="text-[#7c5cff]">🐙</span>{" "}
-                    github.com/Hapssatou03
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="text-[#7c5cff]">🌐</span> Portfolio
-                  </p>
+                {/* Barre infos */}
+                <div className="mt-3 flex flex-wrap items-center justify-start gap-x-4 gap-y-1 text-slate-700 sm:flex-nowrap sm:gap-x-5">
+                  <div className="flex items-center gap-2 whitespace-nowrap cv-text">
+                    <span className="text-violet-600">📍</span>
+                    <span>Argenteuil 95</span>
+                  </div>
+
+                  <span className="hidden sm:inline text-slate-300">|</span>
+
+                  <div className="flex items-center gap-2 whitespace-nowrap cv-text">
+                    <span className="text-violet-600">📞</span>
+                    <span>06 18 76 18 86</span>
+                  </div>
+
+                  <span className="hidden sm:inline text-slate-300">|</span>
+
+                  <div className="flex items-center gap-2 whitespace-nowrap cv-text">
+                    <span className="text-violet-600">✉️</span>
+                    <span>hapssatousy01@email.com</span>
+                  </div>
+
+                  <span className="hidden sm:inline text-slate-300">|</span>
+
+                  <div className="flex items-center gap-2 whitespace-nowrap cv-text">
+                    <span className="text-violet-600">🔗</span>
+                    <a
+                      href="https://my-portfolio-beta-neon-11.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-violet-400 underline-offset-4 hover:text-violet-700"
+                    >
+                      Portfolio
+                    </a>
+                  </div>
+                </div>
+
+                {/* Phrase  */}
+                <p className="mt-3 cv-text whitespace-nowrap text-slate-700">
+                  Passionnée, autonome et créative, la programmation fait partie
+                  de mon quotidien.
+                </p>
+              </div>
+
+              {/* */}
+              <div className="relative h-[150px] w-full md:h-[175px] md:w-[290px] md:translate-x-6">
+                <div className="absolute inset-0 rounded-3xl bg-violet-200/40 blur-2xl" />
+                <Image
+                  src="/images/dev-girl.png"
+                  alt="Illustration développeuse"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* GRID */}
+          <section className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="cv-card px-6 py-5">
+              {/* ===================== */}
+              {/* COMPÉTENCES */}
+              {/* ===================== */}
+              <h2 className="cv-title text-violet-700">Compétences</h2>
+
+              <div className="mt-4 space-y-3">
+                {/* Backend */}
+                <div className="flex items-center gap-3 rounded-2xl bg-white/70 px-4 py-2.5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 shadow">
+                    <img
+                      src="/images/img-back.jpeg"
+                      alt="Backend"
+                      className="h-5 w-5"
+                    />
+                  </div>
+                  <div>
+                    <p className="cv-subtitle text-slate-800">Backend</p>
+                    <p className="cv-text text-slate-700">
+                      Java, Spring Boot, Python, Node.js, PHP
+                    </p>
+                  </div>
+                </div>
+
+                {/* Frontend */}
+                <div className="flex items-center gap-3 rounded-2xl bg-white/70 px-4 py-2.5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 shadow">
+                    <img
+                      src="/images/img-front.png"
+                      alt="Frontend"
+                      className="h-5 w-5"
+                    />
+                  </div>
+                  <div>
+                    <p className="cv-subtitle text-slate-800">Frontend</p>
+                    <p className="cv-text text-slate-700">
+                      HTML, CSS, React, React Native, Next.js, TypeScript
+                    </p>
+                  </div>
+                </div>
+
+                {/* Databases */}
+                <div className="flex items-center gap-3 rounded-2xl bg-white/70 px-4 py-2.5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 shadow">
+                    <img
+                      src="/images/bd-img.png"
+                      alt="Databases"
+                      className="h-5 w-5"
+                    />
+                  </div>
+                  <div>
+                    <p className="cv-subtitle text-slate-800">Databases</p>
+                    <p className="cv-text text-slate-700">
+                      MySQL, PostgreSQL, MongoDB
+                    </p>
+                  </div>
+                </div>
+
+                {/* Outils */}
+                <div className="flex items-center gap-3 rounded-2xl bg-white/70 px-4 py-2.5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 shadow">
+                    <img
+                      src="/images/img-outil.png"
+                      alt="Outils"
+                      className="h-5 w-5"
+                    />
+                  </div>
+                  <div>
+                    <p className="cv-subtitle text-slate-800">Outils</p>
+                    <p className="cv-text text-slate-700">
+                      AWS, Docker, Git, GitHub, Figma, Jira
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              {/* Right illustration (style maquette) */}
-              <div className="relative h-[210px] w-[330px] shrink-0">
-                {/* cercle pastel derrière */}
-                <div className="absolute right-4 top-4 h-[210px] w-[210px] rounded-full bg-[#e9ddff] shadow-[0_20px_60px_rgba(124,92,255,0.25)]" />
+              {/* ===================== */}
+              {/* CERTIFICATIONS */}
+              {/* ===================== */}
+              <h2 className="cv-title mt-4 text-violet-700">Certifications</h2>
+              <ul className="mt-3 space-y-1 cv-text text-slate-700">
+                <li>• AWS Cloud Practitioner</li>
+                <li>• Méthodes Agiles / Scrum</li>
+                <li>• Sécurité applicative (JWT)</li>
+              </ul>
 
-                {/* étoiles */}
-                <div className="absolute right-10 top-6 h-2 w-2 rounded-full bg-[#b9a7f2] opacity-70" />
-                <div className="absolute right-24 top-2 h-3 w-3 rounded-full bg-[#b9a7f2] opacity-50" />
-                <div className="absolute right-2 top-16 h-2 w-2 rounded-full bg-[#b9a7f2] opacity-60" />
+              {/* ===================== */}
+              {/* LANGUES */}
+              {/* ===================== */}
+              <h2 className="cv-title mt-4 text-violet-700">Langues</h2>
+              <ul className="mt-3 list-disc pl-4 space-y-1 cv-text text-slate-700">
+                <li>Français</li>
+                <li>Anglais (lecture et conversation)</li>
+              </ul>
 
-                {/* bulles UI */}
-                <div className="absolute left-0 top-10 rounded-xl bg-white/70 px-3 py-2 text-xs font-semibold text-[#6a45ff] shadow-md backdrop-blur">
-                  {"</>"}
-                </div>
-                <div className="absolute left-8 top-[88px] rounded-xl bg-white/70 px-3 py-2 text-xs text-[#3e3a52] shadow-md backdrop-blur">
-                  API
-                </div>
-                <div className="absolute left-0 top-[135px] rounded-xl bg-white/70 px-3 py-2 text-xs text-[#3e3a52] shadow-md backdrop-blur">
-                  UI
-                </div>
+              {/* ===================== */}
+              {/* CENTRES D’INTÉRÊT */}
+              {/* ===================== */}
+              <h2 className="cv-title mt-4 text-violet-700">
+                Centres d’intérêt
+              </h2>
+              <ul className="mt-3 list-disc pl-4 space-y-1 cv-text text-slate-700">
+                <li>Lecture</li>
+                <li>Méditation</li>
+                <li>Veille numérique</li>
+              </ul>
 
-                {/* image */}
-                <div className="absolute bottom-0 right-0 h-[220px] w-[300px] overflow-hidden rounded-[26px] bg-white/25 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.65)] backdrop-blur">
-                  <Image
-                    src="/images/dev-girl.png"
-                    alt="Developer girl illustration"
-                    fill
-                    className="object-cover"
-                    priority
+              {/* ===================== */}
+              {/* LIENS */}
+              {/* ===================== */}
+              <div className="mt-12 flex items-center justify-center gap-x-3 cv-text text-slate-700">
+                <div className="flex items-center gap-1.5 whitespace-nowrap">
+                  <img
+                    src="/images/github.svg"
+                    alt="GitHub"
+                    className="h-4 w-4"
                   />
+                  <a
+                    href="https://github.com/Hapssatou03"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-violet-400 underline-offset-2 hover:text-violet-700"
+                  >
+                    GitHub
+                  </a>
+                </div>
+
+                <span className="text-slate-300">|</span>
+
+                <div className="flex items-center gap-1.5 whitespace-nowrap">
+                  <img
+                    src="/images/linkedin.png"
+                    alt="LinkedIn"
+                    className="h-4 w-4"
+                  />
+                  <a
+                    href="https://www.linkedin.com/in/hapssatou-sy/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-violet-400 underline-offset-2 hover:text-violet-700"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
+                <span className="hidden sm:inline text-slate-300">|</span>
+
+                <div className="flex items-center gap-2 whitespace-nowrap cv-text">
+                  <span className="text-violet-600">🔗</span>
+                  <a
+                    href="https://my-portfolio-beta-neon-11.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-violet-400 underline-offset-4 hover:text-violet-700"
+                  >
+                    Portfolio
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* PROFIL */}
-          <div className="cv-card mt-6 rounded-[32px] p-7">
-            <h2 className="section-title font-script text-2xl font-extrabold text-[#6a45ff]">
-              Profil
-            </h2>
-            <p className="mt-3 text-[15px] leading-relaxed text-[#3e3a52]">
-              Passionnée par la programmation et forte de 2 ans d’expérience en
-              développement full-stack, je conçois des fonctionnalités front-end,
-              back-end et des API. Curieuse et autonome, je suis actuellement
-              ouverte à une opportunité d’alternance et serais ravie de mettre mes
-              compétences au service de votre entreprise.
-            </p>
-          </div>
+            {/* ===================== */}
+            {/* COLONNE DROITE */}
+            {/* ===================== */}
+            <div className="space-y-4">
+              {/* EXPÉRIENCES */}
+              <div className="cv-card px-6 py-5">
+                <h2 className="cv-title text-violet-700">
+                  Expériences professionnelles
+                </h2>
 
-          {/* GRID */}
-          <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {/* COMPETENCES */}
-            <Card title="Compétences">
-              <div className="mt-5 space-y-3">
-                <SkillRow title="Backend" items="Java, Spring Boot, API REST, JWT" />
-                <SkillRow
-                  title="Frontend"
-                  items="React, React Native, Next.js, HTML/CSS, Bootstrap"
-                />
-                <SkillRow title="Databases" items="MySQL, PostgreSQL, MongoDB" />
-                <SkillRow
-                  title="Outils"
-                  items="Docker, Git/GitHub, Postman, Swagger, Figma"
-                />
+                {/* DADITECH */}
+                <div className="mt-4">
+                  <h3 className="cv-subtitle text-slate-800">
+                    DADITECH — Développeuse Full-Stack
+                  </h3>
+                  <p className="cv-text font-medium text-violet-600">
+                    Mars 2025 – Juillet 2025
+                  </p>
+
+                  <ul className="mt-2 list-disc space-y-1 pl-4 cv-text text-slate-700">
+                    <li>Cadrage technique et fonctionnel</li>
+                    <li>Développement d’APIs robustes</li>
+                    <li>Coordination backend / frontend</li>
+                    <li>Cérémonies Agile (daily, sprint)</li>
+                    <li>Mise en production & déploiements</li>
+                  </ul>
+                </div>
+
+                {/* THL */}
+                <div className="mt-4">
+                  <h3 className="cv-subtitle text-slate-800">
+                    THL Technologie — Développeuse Full-Stack
+                  </h3>
+                  <p className="cv-text font-medium text-violet-600">
+                    Avril 2022 – Septembre 2023
+                  </p>
+
+                  <ul className="mt-2 list-disc space-y-1 pl-4 cv-text text-slate-700">
+                    <li>Mise en place CI/CD</li>
+                    <li>Optimisation API & front-end</li>
+                    <li>Modélisation & exposition des données</li>
+                    <li>Maintenance de fonctionnalités full-stack</li>
+                  </ul>
+                </div>
+                {/* G2R-Formation */}
+                <div className="mt-3">
+                  <h3 className="cv-subtitle text-slate-800">
+                    G2R-Formation — Formatrice Numérique
+                  </h3>
+
+                  <p className="cv-text font-medium text-violet-600">
+                    CDI · Septembre 2020 – Août 2021
+                  </p>
+
+                  <ul className="mt-2 list-disc space-y-1 pl-4 cv-text text-slate-700">
+                    <li>
+                      Préparation et animation de sessions de formation
+                      numérique
+                    </li>
+                    <li>
+                      Sensibilisation à la sécurité numérique et aux bonnes
+                      pratiques
+                    </li>
+                    <li>
+                      Formation aux outils collaboratifs (Google Workspace,
+                      Office 365)
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </Card>
 
-            {/* PROJETS */}
-            <Card title="Projets">
-              <div className="mt-5 rounded-2xl bg-white/45 p-5 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.65)]">
-                <h3 className="text-lg font-extrabold text-[#2d2a3a]">
-                  Spendy — App de gestion financière
-                </h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-[15px] text-[#3e3a52]">
-                  <li>API REST avec Spring Boot</li>
-                  <li>Authentification JWT & rôles Admin / User</li>
-                  <li>Frontend en React & Vite</li>
-                  <li>Dockerisation & tests unitaires</li>
-                </ul>
-              </div>
-            </Card>
+              {/* FORMATIONS */}
+              <div className="cv-card px-6 py-5">
+                <h2 className="cv-title text-violet-700">Formations</h2>
 
-            {/* FORMATION */}
-            <Card title="Formation">
-              <div className="mt-5 rounded-2xl bg-white/45 p-5 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.65)]">
-                <p className="text-[15px] font-semibold text-[#2d2a3a]">
-                  Concepteur Développeur d’Applications (CDA)
-                </p>
-                <p className="mt-1 text-[14px] text-[#3e3a52]">2024 — 2025</p>
-              </div>
-            </Card>
+                <div className="mt-4 space-y-3">
+                  <div>
+                    <h3 className="cv-subtitle text-slate-800">
+                      Master II CTO & Tech Lead
+                    </h3>
+                    <p className="cv-text text-slate-700">
+                      HETIC – Grande École Informatique
+                    </p>
+                    <p className="cv-text font-medium text-violet-600">
+                      Octobre 2026 – Novembre 2027
+                    </p>
+                  </div>
 
-            {/* SOFT SKILLS */}
-            <Card title="Soft Skills">
-              <div className="mt-5 flex flex-wrap gap-3">
-                <Pill text="Autonomie" />
-                <Pill text="Esprit d’équipe" />
-                <Pill text="Problem Solving" />
-                <Pill text="Créativité" />
-                <Pill text="Persévérance" />
+                  <div>
+                    <h3 className="cv-subtitle text-slate-800">
+                      Master I – Concepteur Développeur d’Applications
+                    </h3>
+                    <p className="cv-text text-slate-700">
+                      DORANCO – École Supérieure des Technologies
+                    </p>
+                    <p className="cv-text font-medium text-violet-600">
+                      Octobre 2024 – Juillet 2025
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="cv-subtitle text-slate-800">
+                      Titre RNCP – Développeur Mobile
+                    </h3>
+                    <p className="cv-text text-slate-700">OpenClassrooms</p>
+                    <p className="cv-text font-medium text-violet-600">
+                      Certification professionnelle RNCP (niveau 6)
+                    </p>
+                  </div>
+                </div>
               </div>
-            </Card>
-          </div>
+            </div>
+          </section>
+
+          <div className="h-4" />
         </div>
-      </section>
+      </div>
     </main>
-  );
-}
-
-function Card({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div className="cv-card rounded-[32px] p-7">
-      <h2 className="font-script text-2xl font-extrabold text-[#6a45ff]">
-        {title}
-      </h2>
-      {children}
-    </div>
-  );
-}
-
-function SkillRow({ title, items }: { title: string; items: string }) {
-  return (
-    <div className="flex items-center justify-between gap-4 rounded-2xl bg-white/45 px-4 py-3 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.65)]">
-      <span className="rounded-full bg-[#7c5cff] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(124,92,255,0.25)]">
-        {title}
-      </span>
-      <span className="text-sm text-[#3e3a52]">{items}</span>
-    </div>
-  );
-}
-
-function Pill({ text }: { text: string }) {
-  return (
-    <span className="rounded-full bg-[#7c5cff] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(124,92,255,0.25)]">
-      {text}
-    </span>
   );
 }
